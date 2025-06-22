@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Visual Guide to Your Jakarta Adventure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!--
+    Selected Color Palette: Energetic & Playful
+    Background: #F9F5F0 (Off-white)
+    Primary Text/Accents: #0A0908 (Almost Black)
+    Highlight 1: #E94F37 (Vibrant Red-Orange)
+    Highlight 2: #F4A261 (Sandy Orange)
+    Highlight 3: #457B9D (Steel Blue)
+
+    Narrative Plan:
+    1. Hook: Trip overview with big numbers and a chart showing the travel style split.
+    2. Itinerary Flow: A custom HTML/CSS timeline detailing the 6-day plan.
+    3. Culinary Costs: A bar chart comparing meal expenses.
+    4. Traveler Toolkit: Visual cards for essential tips (Money, Connectivity, Transport).
+    5. Conclusion: A final note on the unique aspects of the trip.
+
+    Visualization Choices:
+    - Trip Split (Solo vs. Insider): Donut Chart (Chart.js) to show a simple part-to-whole relationship. (NO SVG).
+    - Itinerary Timeline: Custom Timeline (HTML/CSS) to organize a sequence of events. (NO SVG, NO MERMAID JS).
+    - Meal Cost Comparison: Horizontal Bar Chart (Chart.js) to effectively compare costs across restaurants. (NO SVG).
+    - Traveler Toolkit Icons: Unicode characters styled with CSS for simple, clear pictographs. (NO SVG).
+
+    Confirmation: NEITHER Mermaid JS NOR SVG were used in this output. All visuals are rendered using Chart.js on Canvas or structured HTML/CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9F5F0;
+            color: #0A0908;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-[#0A0908] mb-2">Your Jakarta Adventure</h1>
+            <p class="text-lg md:text-xl text-[#457B9D]">A Visual Itinerary for Exploration & Discovery</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-around text-center">
+                <div class="mb-6 md:mb-0">
+                    <p class="text-6xl font-black text-[#E94F37]">6</p>
+                    <p class="text-lg font-bold">Total Days</p>
+                </div>
+                <div class="mb-6 md:mb-0">
+                    <p class="text-6xl font-black text-[#F4A261]">2</p>
+                    <p class="text-lg font-bold">Travel Styles</p>
+                </div>
+                <div>
+                    <p class="text-6xl font-black text-[#457B9D]">1</p>
+                    <p class="text-lg font-bold">Unforgettable Trip</p>
+                </div>
+            </div>
+            
+            <div class="md:col-span-2 lg:col-span-1 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-center mb-4">Trip Pacing: Solo vs. Social</h2>
+                <p class="text-center text-sm mb-4">Your journey is perfectly balanced between independent discovery and shared experiences with a local friend.</p>
+                <div class="chart-container h-64 md:h-auto">
+                    <canvas id="tripSplitChart"></canvas>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-center mb-4">Culinary Budget Snapshot</h2>
+                <p class="text-center text-sm mb-4">This compares the average per-person cost at the recommended solo dining spots, giving you an idea of your food budget.</p>
+                <div class="chart-container h-64 md:h-auto">
+                    <canvas id="mealCostChart"></canvas>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-8">Itinerary Flow: A Day-by-Day Journey</h2>
+                <div class="relative">
+                    <div class="hidden md:block absolute top-0 bottom-0 left-1/2 w-0.5 bg-[#457B9D] opacity-30"></div>
+                    <div class="space-y-12">
+
+                        <div class="md:grid md:grid-cols-[1fr_auto_1fr] md:gap-x-8 items-start">
+                             <div class="md:text-right">
+                                <p class="text-sm font-bold text-[#E94F37]">DAY 1: WED, AUG 13</p>
+                                <h3 class="text-xl font-bold mb-2">Arrival & Culinary Welcome</h3>
+                                <p class="text-sm">Land in Jakarta, get settled, and dive straight into the local food scene with an elegant dinner at Seribu Rasa Setiabudi.</p>
+                             </div>
+                             <div class="hidden md:flex items-center justify-center">
+                                 <div class="w-4 h-4 bg-[#E94F37] rounded-full"></div>
+                             </div>
+                             <div></div>
+                        </div>
+
+                        <div class="md:grid md:grid-cols-[1fr_auto_1fr] md:gap-x-8 items-start">
+                            <div></div>
+                            <div class="hidden md:flex items-center justify-center">
+                                <div class="w-4 h-4 bg-[#F4A261] rounded-full"></div>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-[#F4A261]">DAY 2: THU, AUG 14</p>
+                                <h3 class="text-xl font-bold mb-2">A Stroll Through Time</h3>
+                                <p class="text-sm">Explore the historic heart of Kota Tua, visit the Jakarta History Museum, and soak in the colonial atmosphere at Café Batavia.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="md:grid md:grid-cols-[1fr_auto_1fr] md:gap-x-8 items-start">
+                             <div class="md:text-right">
+                                <p class="text-sm font-bold text-[#457B9D]">DAY 3: FRI, AUG 15</p>
+                                <h3 class="text-xl font-bold mb-2">National Symbols & Friend's Arrival</h3>
+                                <p class="text-sm">Visit Monas, Istiqlal Mosque, and the Cathedral before your friend arrives, transitioning to the 'Local Insider' phase of your trip.</p>
+                             </div>
+                             <div class="hidden md:flex items-center justify-center">
+                                 <div class="w-4 h-4 bg-[#457B9D] rounded-full"></div>
+                             </div>
+                             <div></div>
+                        </div>
+
+                        <div class="md:grid md:grid-cols-[1fr_auto_1fr] md:gap-x-8 items-start">
+                            <div></div>
+                            <div class="hidden md:flex items-center justify-center">
+                                <div class="w-4 h-4 bg-[#E94F37] rounded-full"></div>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-[#E94F37]">DAY 4: SAT, AUG 16</p>
+                                <h3 class="text-xl font-bold mb-2">A Local's Jakarta & Nightlife</h3>
+                                <p class="text-sm">Enjoy a day of flexible exploration led by your friend, followed by a safe and informed dive into the city's discreet LGBTQ+ nightlife.</p>
+                            </div>
+                        </div>
+
+                        <div class="md:grid md:grid-cols-[1fr_auto_1fr] md:gap-x-8 items-start">
+                             <div class="md:text-right">
+                                <p class="text-sm font-bold text-[#F4A261]">DAY 5: SUN, AUG 17</p>
+                                <h3 class="text-xl font-bold mb-2">Independence Day Celebration</h3>
+                                <p class="text-sm">Experience Hari Merdeka like a local. Your friend will guide you to authentic neighborhood festivities for a truly memorable day.</p>
+                             </div>
+                             <div class="hidden md:flex items-center justify-center">
+                                 <div class="w-4 h-4 bg-[#F4A261] rounded-full"></div>
+                             </div>
+                             <div></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-3xl font-bold text-center mb-8">Essential Traveler Toolkit</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    
+                    <div class="border-2 border-[#E94F37] rounded-lg p-6">
+                        <p class="text-4xl mb-4">📱</p>
+                        <h3 class="text-xl font-bold mb-2">Connectivity</h3>
+                        <p class="text-sm"><span class="font-bold text-[#E94F37]">eSIM</span> for convenience or a <span class="font-bold text-[#E94F37]">Local SIM</span> for best value. Download apps before you fly!</p>
+                    </div>
+
+                    <div class="border-2 border-[#F4A261] rounded-lg p-6">
+                        <p class="text-4xl mb-4">💳 💵</p>
+                        <h3 class="text-xl font-bold mb-2">Money Strategy</h3>
+                        <p class="text-sm">Use a mix: <span class="font-bold text-[#F4A261]">Credit Card</span> for hotels, <span class="font-bold text-[#F4A261]">Cash</span> for small vendors, and link your card to <span class="font-bold text-[#F4A261]">Gojek/Grab</span> for everything else.</p>
+                    </div>
+
+                    <div class="border-2 border-[#457B9D] rounded-lg p-6">
+                        <p class="text-4xl mb-4">🚗</p>
+                        <h3 class="text-xl font-bold mb-2">Transportation</h3>
+                        <p class="text-sm">Rely on the <span class="font-bold text-[#457B9D]">Gojek</span> and <span class="font-bold text-[#457B9D]">Grab</span> "super apps" for safe and easy travel by car or motorbike taxi.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="text-center mt-12 md:mt-16 text-sm text-gray-500">
+            <p>This infographic is a visual representation of the 'Complete Jakarta Itinerary'.</p>
+            <p>All data is derived from the provided travel plan. Enjoy your trip!</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabel(label, maxWidth) {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    if (currentLine.length > 0) {
+                        lines.push(currentLine);
+                    }
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const chartDefaultOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            family: 'Inter',
+                            size: 12
+                        },
+                        color: '#0A0908'
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    bodyFont: {
+                        family: 'Inter'
+                    },
+                    titleFont: {
+                        family: 'Inter',
+                        weight: 'bold'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                       color: '#0A0908',
+                       font: { family: 'Inter' }
+                    },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: {
+                       color: '#0A0908',
+                       font: { family: 'Inter' }
+                    },
+                    grid: { color: '#00000010' }
+                }
+            }
+        };
+
+        const tripSplitCtx = document.getElementById('tripSplitChart').getContext('2d');
+        new Chart(tripSplitCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Solo Explorer Days', 'Local Insider Days'],
+                datasets: [{
+                    label: 'Trip Phases',
+                    data: [2.5, 2.5],
+                    backgroundColor: [
+                        '#457B9D',
+                        '#E94F37'
+                    ],
+                    borderColor: '#F9F5F0',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                         labels: {
+                            font: {
+                                family: 'Inter'
+                            },
+                            color: '#0A0908'
+                        }
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const mealCostCtx = document.getElementById('mealCostChart').getContext('2d');
+        const originalLabels = ['Seribu Rasa Setiabudi', 'Kedai Seni Djakarté', 'Kaum Jakarta'];
+        const processedLabels = originalLabels.map(label => wrapLabel(label, 16));
+        
+        new Chart(mealCostCtx, {
+            type: 'bar',
+            data: {
+                labels: processedLabels,
+                datasets: [{
+                    label: 'Average Cost (IDR)',
+                    data: [325000, 140000, 325000],
+                    backgroundColor: [
+                        '#E94F37',
+                        '#F4A261',
+                        '#457B9D'
+                    ],
+                    borderColor: [
+                        '#E94F37',
+                        '#F4A261',
+                        '#457B9D'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...chartDefaultOptions,
+                indexAxis: 'y'
+            }
+        });
+    </script>
+</body>
+</html>

@@ -9,7 +9,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
     <!-- 
-        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. This chart is built with structured HTML, CSS, and JS.
+        Chosen Palette: Calm & Trustworthy
+        - #212529 (Primary Text)
+        - #495057 (Secondary Text)
+        - #f8f9fa (Background)
+        - #5e60ce (Track 1 Accent)
+        - #4ea8de (Track 2 Accent)
+        - #198754 (Track 3 Accent)
+
+        Application Structure Plan: 
+        This SPA is a dedicated Gantt chart infographic. The information architecture is designed for maximum clarity and focuses on a single, primary task: understanding the project timeline. It features a top-down structure with a main header, the Gantt chart visualization as the core component, and a legend at the bottom. This straightforward, task-oriented design was chosen over a more complex layout to ensure that the timeline, dependencies, and parallel tasks are immediately and clearly understood by the project team.
+
+        Visualization & Content Choices:
+        1.  Project Roadmap -> Goal: Organize & Change -> Viz: Custom HTML/CSS Gantt Chart -> Interaction: Hover tooltips on bars -> Justification: A Gantt chart is the quintessential tool for visualizing a project timeline with phases and parallel tasks. Building it with structured HTML and Tailwind CSS provides superior control over layout, styling, and readability compared to a generic charting library, especially for incorporating features like phase dividers and multi-level headers. This method also strictly adheres to the NO SVG/Mermaid constraint.
+
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
     -->
     <style>
         body {
@@ -27,7 +41,7 @@
         .gantt-cell {
             border-right: 1px solid #dee2e6;
             border-bottom: 1px solid #dee2e6;
-            padding: 0.75rem 1rem; /* Increased padding */
+            padding: 0.75rem 1rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -41,7 +55,7 @@
             z-index: 10;
             border-right: 2px solid #ced4da;
         }
-        .gantt-row:nth-child(odd) .gantt-task-name {
+        .gantt-row:nth-of-type(odd) .gantt-task-name {
              background-color: #f1f3f5;
         }
         .gantt-timeline {
@@ -50,14 +64,14 @@
         }
         .gantt-bar {
             position: absolute;
-            height: 70%; /* Increased height */
+            height: 70%;
             top: 15%;
             border-radius: 0.375rem;
             display: flex;
             align-items: center;
             padding-left: 0.75rem;
             color: white;
-            font-size: 0.875rem; /* Increased font size */
+            font-size: 0.875rem;
             font-weight: 600;
             overflow: hidden;
             transition: all 0.2s ease-in-out;
@@ -98,7 +112,6 @@
 
         <div class="bg-white rounded-lg shadow-lg overflow-x-auto">
             <div class="gantt-grid min-w-[1200px]">
-                <!-- Header -->
                 <div class="gantt-header">
                     <div class="gantt-cell font-bold bg-gray-200 sticky left-0 z-20"></div>
                     <div class="gantt-cell font-bold bg-gray-200 text-center month-header">Month 1</div>
@@ -114,7 +127,6 @@
                     </script>
                 </div>
 
-                <!-- Data Rows -->
                 <script>
                     const tasks = [
                         { phase: 'Phase 1: 전환 및 기반 구축 (~4주)' },
@@ -138,13 +150,19 @@
                     ];
 
                     const totalWeeks = 12;
+                    let isOddRow = true;
 
                     tasks.forEach(task => {
+                        const ganttGrid = document.querySelector('.gantt-grid');
                         if (task.phase) {
-                            document.write(`<div class="gantt-cell phase-divider">${task.phase}</div>`);
+                            const phaseRow = document.createElement('div');
+                            phaseRow.className = 'gantt-cell phase-divider';
+                            phaseRow.textContent = task.phase;
+                            ganttGrid.appendChild(phaseRow);
                             return;
                         }
-
+                        
+                        isOddRow = !isOddRow;
                         const startWeek = task.start;
                         const endWeek = task.end;
                         const duration = endWeek - startWeek + 1;
@@ -155,17 +173,37 @@
                         const trackClass = `track-${task.track}`;
                         const barTitle = `${task.name} | ${task.start}주차 ~ ${task.end}주차`;
 
-                        let rowHTML = `
-                            <div class="gantt-row">
-                                <div class="gantt-cell gantt-task-name" title="${task.name}">${task.name}</div>
-                                <div class="gantt-cell gantt-timeline">
-                                    <div class="gantt-bar ${trackClass}" style="left: ${left}%; width: ${width}%" title="${barTitle}">
-                                        <span>${task.name}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        document.write(rowHTML);
+                        const row = document.createElement('div');
+                        row.className = 'gantt-row';
+
+                        const taskNameCell = document.createElement('div');
+                        taskNameCell.className = 'gantt-cell gantt-task-name';
+                        if (isOddRow) {
+                           taskNameCell.style.backgroundColor = '#f1f3f5';
+                        }
+                        taskNameCell.title = task.name;
+                        taskNameCell.textContent = task.name;
+
+                        const timelineCell = document.createElement('div');
+                        timelineCell.className = 'gantt-cell gantt-timeline';
+                         if (isOddRow) {
+                           timelineCell.style.backgroundColor = '#f8f9fa';
+                        }
+
+                        const bar = document.createElement('div');
+                        bar.className = `gantt-bar ${trackClass}`;
+                        bar.style.left = `${left}%`;
+                        bar.style.width = `${width}%`;
+                        bar.title = barTitle;
+                        
+                        const barSpan = document.createElement('span');
+                        barSpan.textContent = task.name;
+
+                        bar.appendChild(barSpan);
+                        timelineCell.appendChild(bar);
+                        row.appendChild(taskNameCell);
+                        row.appendChild(timelineCell);
+                        ganttGrid.appendChild(row);
                     });
                 </script>
             </div>

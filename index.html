@@ -73,6 +73,24 @@
             height: 1.25rem;
             margin-right: 0.75rem;
         }
+        .risk-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .risk-label {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+        .risk-text {
+            padding-left: 2.25rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: #d1d5db; /* gray-300 */
+        }
     </style>
 </head>
 <body class="text-gray-200 antialiased">
@@ -124,7 +142,7 @@
                 <div class="tier-card flex flex-col bg-gray-900 p-6 rounded-xl border-2 border-gray-700">
                     <div class="text-center">
                         <h3 class="text-2xl font-bold text-white">The Supporter</h3>
-                        <p class="my-2"><span class="text-5xl font-extrabold text-indigo-300">$2.99</span><span class="text-gray-400">/mo</span></p>
+                        <p class="my-2"><span class="text-5xl font-extrabold text-indigo-300">$2.95</span><span class="text-gray-400">/mo</span></p>
                         <p class="font-semibold text-indigo-300">Goal: Community & Support</p>
                     </div>
                     <hr class="border-gray-700 my-6">
@@ -139,7 +157,7 @@
                     <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-500 text-white text-sm font-bold uppercase py-1 px-4 rounded-full">CORE VALUE</div>
                     <div class="text-center">
                         <h3 class="text-2xl font-bold text-white">The Insider</h3>
-                        <p class="my-2"><span class="text-5xl font-extrabold text-white">$14.99</span><span class="text-gray-300">/mo</span></p>
+                        <p class="my-2"><span class="text-5xl font-extrabold text-white">$14.95</span><span class="text-gray-300">/mo</span></p>
                         <p class="font-semibold text-white">Goal: Core Value Proposition</p>
                     </div>
                     <hr class="border-indigo-700 my-6">
@@ -177,11 +195,11 @@
                     <div class="text-center mb-4">
                         <div class="text-5xl font-extrabold text-white">~$63K</div>
                         <div class="text-gray-400">Total Monthly Recurring Revenue</div>
-                         <div class="text-lg font-bold text-green-300 mt-1">~$759K Annually</div>
+                         <div class="text-lg font-bold text-green-300 mt-1">~$756K Annually</div>
                     </div>
                     <div class="space-y-2 text-sm">
-                        <p class="flex justify-between"><span>Tier 1 (60% of members)</span> <span class="font-mono">$11,898</span></p>
-                        <p class="flex justify-between"><span>Tier 2 (35% of members)</span> <span class="font-mono">$34,821</span></p>
+                        <p class="flex justify-between"><span>Tier 1 (60% of members)</span> <span class="font-mono">$11,766</span></p>
+                        <p class="flex justify-between"><span>Tier 2 (35% of members)</span> <span class="font-mono">$34,726</span></p>
                         <p class="flex justify-between"><span>Tier 3 (5% of members)</span> <span class="font-mono">$16,564</span></p>
                     </div>
                 </div>
@@ -193,8 +211,8 @@
                         <div class="text-lg font-bold text-sky-300 mt-1">~$1.13M Annually</div>
                     </div>
                     <div class="space-y-2 text-sm">
-                        <p class="flex justify-between"><span>Tier 1 (60% of members)</span> <span class="font-mono">$17,847</span></p>
-                        <p class="flex justify-between"><span>Tier 2 (35% of members)</span> <span class="font-mono">$52,232</span></p>
+                        <p class="flex justify-between"><span>Tier 1 (60% of members)</span> <span class="font-mono">$17,649</span></p>
+                        <p class="flex justify-between"><span>Tier 2 (35% of members)</span> <span class="font-mono">$52,089</span></p>
                         <p class="flex justify-between"><span>Tier 3 (5% of members)</span> <span class="font-mono">$24,846</span></p>
                     </div>
                 </div>
@@ -392,24 +410,42 @@
         <!-- Risk Mitigation -->
         <div class="section-card">
             <h2 class="text-3xl font-bold text-white text-center mb-8">Risk Mitigation Plan</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div>
-                    <h3 class="font-bold text-lg text-red-300">Challenge</h3>
-                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Preference for free content.</p>
-                    <h3 class="font-bold text-lg text-green-300 mt-4">Mitigation</h3>
-                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Low-cost $2.99 entry tier and a limited-time early bird discount to lower friction.</p>
+            <div class="space-y-6">
+                <!-- Risk 1 -->
+                <div class="risk-item p-4 bg-gray-900/50 rounded-lg">
+                    <div class="risk-label text-red-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="check-icon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                        Challenge: Preference for free content.
+                    </div>
+                    <div class="risk-label text-green-300">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="check-icon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        Mitigation
+                    </div>
+                    <p class="risk-text">A low-cost $2.95 entry tier and a limited-time early bird discount will lower the barrier to entry.</p>
                 </div>
-                 <div>
-                    <h3 class="font-bold text-lg text-red-300">Challenge</h3>
-                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Competition from established learning platforms.</p>
-                     <h3 class="font-bold text-lg text-green-300 mt-4">Mitigation</h3>
-                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Differentiate with unique intellectual content (geopolitics, etymology) that cannot be replicated.</p>
+                 <!-- Risk 2 -->
+                <div class="risk-item p-4 bg-gray-900/50 rounded-lg">
+                    <div class="risk-label text-red-300">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="check-icon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                        Challenge: Competition from established platforms.
+                    </div>
+                    <div class="risk-label text-green-300">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="check-icon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        Mitigation
+                    </div>
+                    <p class="risk-text">Differentiate with unique intellectual content (geopolitics, etymology) that cannot be easily replicated.</p>
                 </div>
-                 <div>
-                    <h3 class="font-bold text-lg text-red-300">Challenge</h3>
-                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Production capacity constraints.</p>
-                     <h3 class="font-bold text-lg text-green-300 mt-4">Mitigation</h3>
-                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Develop scalable workflows with PNH and define a clear protocol for Emergency Briefings.</p>
+                 <!-- Risk 3 -->
+                <div class="risk-item p-4 bg-gray-900/50 rounded-lg">
+                    <div class="risk-label text-red-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="check-icon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                        Challenge: Production capacity constraints.
+                    </div>
+                    <div class="risk-label text-green-300">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="check-icon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        Mitigation
+                    </div>
+                    <p class="risk-text">Develop scalable workflows with PNH and establish a clear, manageable protocol for Emergency Briefings.</p>
                 </div>
             </div>
         </div>

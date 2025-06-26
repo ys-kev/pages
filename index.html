@@ -1,231 +1,308 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[타일러볼까요] 채널 성장 실행 로드맵 간트 차트 (12주 집중 버전)</title>
+    <title>Comprehensive Membership Strategy Infographic</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <!-- 
-        Chosen Palette: Calm & Trustworthy
-        - #212529 (Primary Text)
-        - #495057 (Secondary Text)
-        - #f8f9fa (Background)
-        - #5e60ce (Track 1 Accent)
-        - #4ea8de (Track 2 Accent)
-        - #198754 (Track 3 Accent)
-
-        Application Structure Plan: 
-        This SPA is a dedicated Gantt chart infographic. The information architecture is designed for maximum clarity and focuses on a single, primary task: understanding the project timeline. It features a top-down structure with a main header, the Gantt chart visualization as the core component, and a legend at the bottom. This straightforward, task-oriented design was chosen over a more complex layout to ensure that the timeline, dependencies, and parallel tasks are immediately and clearly understood by the project team.
-
-        Visualization & Content Choices:
-        1.  Project Roadmap -> Goal: Organize & Change -> Viz: Custom HTML/CSS Gantt Chart -> Interaction: Hover tooltips on bars -> Justification: A Gantt chart is the quintessential tool for visualizing a project timeline with phases and parallel tasks. Building it with structured HTML and Tailwind CSS provides superior control over layout, styling, and readability compared to a generic charting library, especially for incorporating features like phase dividers and multi-level headers. This method also strictly adheres to the NO SVG/Mermaid constraint.
-
-        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
-    -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', 'Noto Sans KR', sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Darker gray-900 */
         }
-        .gantt-grid {
-            display: grid;
-            grid-template-columns: 300px repeat(12, 1fr); /* Task name column + 12 weeks */
-            border-left: 1px solid #dee2e6;
+        .gradient-text {
+            background: -webkit-linear-gradient(#6366f1, #d8b4fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .gantt-header, .gantt-row {
-            display: contents;
+        .section-card {
+            background-color: #1f2937; /* gray-800 */
+            border: 1px solid #374151; /* gray-700 */
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
-        .gantt-cell {
-            border-right: 1px solid #dee2e6;
-            border-bottom: 1px solid #dee2e6;
-            padding: 0.75rem 1rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .gantt-task-name {
-            position: sticky;
-            left: 0;
-            background-color: #f8f9fa;
-            font-weight: 600;
-            color: #343a40;
-            z-index: 10;
-            border-right: 2px solid #ced4da;
-        }
-        .gantt-row:nth-of-type(odd) .gantt-task-name {
-             background-color: #f1f3f5;
-        }
-        .gantt-timeline {
+        .timeline-item {
             position: relative;
-            grid-column: span 12;
+            padding-bottom: 2.5rem;
+            padding-left: 2.5rem;
         }
-        .gantt-bar {
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        .timeline-marker {
             position: absolute;
-            height: 70%;
-            top: 15%;
-            border-radius: 0.375rem;
-            display: flex;
-            align-items: center;
-            padding-left: 0.75rem;
-            color: white;
-            font-size: 0.875rem;
-            font-weight: 600;
-            overflow: hidden;
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            left: 0;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #6366f1; /* indigo-500 */
+            border: 4px solid #1f2937;
         }
-        .gantt-bar:hover {
-            transform: scale(1.02);
-            filter: brightness(1.15);
+        .timeline-line {
+            position: absolute;
+            left: 9px;
+            top: 25px;
+            bottom: -5px;
+            width: 2px;
+            background-color: #374151;
         }
-        .track-1 { background-color: #5e60ce; } 
-        .track-2 { background-color: #4ea8de; } 
-        .track-3 { background-color: #198754; } 
-        
-        .phase-divider {
-            grid-column: 1 / -1;
-            background-color: #e9ecef;
-            font-weight: 800;
-            font-size: 1.125rem;
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-            color: #495057;
+        .table-header {
+            background-color: #374151; /* gray-700 */
         }
-        .month-header {
-            grid-column: span 4;
-            border-top: 2px solid #adb5bd;
-            border-bottom: 1px solid #dee2e6;
-            border-right: 1px solid #dee2e6;
+        .table-row-odd {
+            background-color: #1f2937; /* gray-800 */
+        }
+        .table-row-even {
+            background-color: #262f3e; /* darker mix */
+        }
+        .tier-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .tier-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+        }
+        .check-icon {
+            flex-shrink: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
         }
     </style>
 </head>
-<body class="p-4 sm:p-6 lg:p-8 text-[#212529]">
-    <div class="max-w-7xl mx-auto">
-        <header class="mb-8">
-            <h1 class="text-3xl font-black text-gray-900">채널 성장 실행 로드맵 (12주 집중 버전)</h1>
-            <p class="text-gray-600 mt-2">새로운 프로덕션 체제 전환 및 채널 성장을 위한 12주 실행 계획입니다.</p>
+<body class="text-gray-200 antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <!-- Header -->
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+                <span class="text-gray-400">타일러볼까요?</span> Membership Master Plan
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-400">A Comprehensive Visual Strategy for the January 2026 Launch</p>
         </header>
 
-        <div class="bg-white rounded-lg shadow-lg overflow-x-auto">
-            <div class="gantt-grid min-w-[1200px]">
-                <div class="gantt-header">
-                    <div class="gantt-cell font-bold bg-gray-200 sticky left-0 z-20"></div>
-                    <div class="gantt-cell font-bold bg-gray-200 text-center month-header">Month 1</div>
-                    <div class="gantt-cell font-bold bg-gray-200 text-center month-header">Month 2</div>
-                    <div class="gantt-cell font-bold bg-gray-200 text-center month-header">Month 3</div>
+        <!-- Top Row: Opportunity & Core Objective -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <div class="section-card lg:col-span-2">
+                <h2 class="text-2xl font-bold text-white mb-4">Market Opportunity & Key Metrics</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-gray-700/50 p-4 rounded-lg">
+                        <div class="text-3xl font-bold gradient-text">474K</div>
+                        <div class="text-sm text-gray-400 mt-1">Subscribers</div>
+                    </div>
+                    <div class="bg-gray-700/50 p-4 rounded-lg">
+                        <div class="text-3xl font-bold gradient-text">89%</div>
+                        <div class="text-sm text-gray-400 mt-1">Korean Audience</div>
+                    </div>
+                    <div class="bg-gray-700/50 p-4 rounded-lg">
+                        <div class="text-3xl font-bold gradient-text">$18B</div>
+                        <div class="text-sm text-gray-400 mt-1">KR Edu Market</div>
+                    </div>
+                     <div class="bg-gray-700/50 p-4 rounded-lg">
+                        <div class="text-3xl font-bold gradient-text">>50K</div>
+                        <div class="text-sm text-gray-400 mt-1">Target MRR</div>
+                    </div>
                 </div>
-                <div class="gantt-header">
-                    <div class="gantt-cell font-bold bg-gray-100 sticky left-0 z-20">과업 (Task)</div>
-                    <script>
-                        for(let i = 1; i <= 12; i++) {
-                            document.write(`<div class="gantt-cell font-bold bg-gray-50 text-center text-xs">W${i}</div>`);
-                        }
-                    </script>
+            </div>
+            <div class="section-card flex flex-col justify-center items-center text-center">
+                 <h2 class="text-2xl font-bold text-white mb-2">Core Objective</h2>
+                 <p class="text-gray-300">Close the <span class="font-bold text-purple-300">Conversion Gap</span> by monetizing the <span class="text-5xl font-extrabold text-white block my-2">76%</span> of non-subscriber views.</p>
+            </div>
+        </div>
+
+        <!-- Membership Architecture -->
+        <div class="section-card mb-6">
+            <h2 class="text-3xl font-bold text-white text-center mb-8">Finalized Membership Architecture</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Tier 1 -->
+                <div class="tier-card flex flex-col bg-gray-900 p-6 rounded-xl border-2 border-gray-700">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-white">The Supporter</h3>
+                        <p class="my-2"><span class="text-5xl font-extrabold text-indigo-300">$2.99</span><span class="text-gray-400">/mo</span></p>
+                        <p class="font-semibold text-indigo-300">Goal: Community & Support</p>
+                    </div>
+                    <hr class="border-gray-700 my-6">
+                    <ul class="space-y-4 text-gray-300 flex-grow">
+                        <li class="flex"><svg class="check-icon text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Loyalty Badges & Custom Emojis</li>
+                        <li class="flex"><svg class="check-icon text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Members-only community posts</li>
+                    </ul>
                 </div>
 
-                <script>
-                    const tasks = [
-                        { phase: 'Phase 1: 전환 및 기반 구축 (~4주)' },
-                        { name: 'PNH (제작사) 계약 확정', track: 1, start: 1, end: 1 },
-                        { name: '플랫폼 접근 권한 재구성', track: 1, start: 2, end: 2 },
-                        { name: '신규 파트너 온보딩 및 협업 프로세스 정립', track: 1, start: 3, end: 3 },
-                        { name: "'채널 운영 바이블' 문서화", track: 2, start: 1, end: 2 },
-                        { name: '하반기 콘텐츠 캘린더 수립', track: 2, start: 4, end: 5 },
-                        
-                        { phase: 'Phase 2: 성장 가속화 및 수익화 준비 (5~12주)' },
-                        { name: 'A/B 테스팅 시스템 도입 및 실행', track: 2, start: 5, end: 12 },
-                        { name: '기존 영상 제목 재검토 및 수정', track: 2, start: 5, end: 12 },
-                        { name: '콘텐츠 다각화 및 시리즈 심화 전략', track: 2, start: 6, end: 12 },
-                        { name: 'PPL/브랜디드 콘텐츠 제안서 제작', track: 3, start: 6, end: 6 },
-                        { name: '잠재 광고주 리스트업 및 초기 접촉', track: 3, start: 8, end: 12 },
-                        { name: '업무 프로세스 자동화 및 표준화', track: 3, start: 8, end: 12 },
+                <!-- Tier 2 -->
+                <div class="tier-card flex flex-col bg-indigo-900/40 p-6 rounded-xl border-2 border-indigo-500 relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-500 text-white text-sm font-bold uppercase py-1 px-4 rounded-full">CORE VALUE</div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-white">The Insider</h3>
+                        <p class="my-2"><span class="text-5xl font-extrabold text-white">$14.99</span><span class="text-gray-300">/mo</span></p>
+                        <p class="font-semibold text-white">Goal: Core Value Proposition</p>
+                    </div>
+                    <hr class="border-indigo-700 my-6">
+                    <ul class="space-y-4 text-gray-200 flex-grow">
+                        <li class="flex"><svg class="check-icon text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>All Tier 1 benefits</li>
+                        <li class="flex font-bold"><svg class="check-icon text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>The English Edition: Full English versions</li>
+                        <li class="flex font-bold"><svg class="check-icon text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>The Toolkit: PDF script, vocab, & MP3</li>
+                    </ul>
+                </div>
 
-                        { phase: 'Phase 3: 확장 및 팀 빌딩 (9주차부터)' },
-                        { name: '첫 전략적 콜라보레이션 실행', track: 1, start: 12, end: 12 },
-                        { name: '신규 인력 채용 계획 수립 (필요시)', track: 2, start: 12, end: 12 },
-                    ];
+                <!-- Tier 3 -->
+                <div class="tier-card flex flex-col bg-gray-900 p-6 rounded-xl border-2 border-gray-700">
+                     <div class="text-center">
+                        <h3 class="text-2xl font-bold text-white">The Partner</h3>
+                        <p class="my-2"><span class="text-5xl font-extrabold text-purple-300">$49.95</span><span class="text-gray-400">/mo</span></p>
+                        <p class="font-semibold text-purple-300">Goal: Exclusivity & Access</p>
+                    </div>
+                    <hr class="border-gray-700 my-6">
+                     <ul class="space-y-4 text-gray-300 flex-grow">
+                        <li class="flex"><svg class="check-icon text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>All Tier 1 & 2 benefits</li>
+                        <li class="flex font-bold"><svg class="check-icon text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Full Backlog Access to English Editions</li>
+                        <li class="flex font-bold"><svg class="check-icon text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Monthly Live Q&A with Creator</li>
+                        <li class="flex font-bold"><svg class="check-icon text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Emergency Geopolitical Briefing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-                    const totalWeeks = 12;
-                    let isOddRow = true;
-
-                    tasks.forEach(task => {
-                        const ganttGrid = document.querySelector('.gantt-grid');
-                        if (task.phase) {
-                            const phaseRow = document.createElement('div');
-                            phaseRow.className = 'gantt-cell phase-divider';
-                            phaseRow.textContent = task.phase;
-                            ganttGrid.appendChild(phaseRow);
-                            return;
-                        }
-                        
-                        isOddRow = !isOddRow;
-                        const startWeek = task.start;
-                        const endWeek = task.end;
-                        const duration = endWeek - startWeek + 1;
-
-                        const left = ((startWeek - 1) / totalWeeks) * 100;
-                        const width = (duration / totalWeeks) * 100;
-                        
-                        const trackClass = `track-${task.track}`;
-                        const barTitle = `${task.name} | ${task.start}주차 ~ ${task.end}주차`;
-
-                        const row = document.createElement('div');
-                        row.className = 'gantt-row';
-
-                        const taskNameCell = document.createElement('div');
-                        taskNameCell.className = 'gantt-cell gantt-task-name';
-                        if (isOddRow) {
-                           taskNameCell.style.backgroundColor = '#f1f3f5';
-                        }
-                        taskNameCell.title = task.name;
-                        taskNameCell.textContent = task.name;
-
-                        const timelineCell = document.createElement('div');
-                        timelineCell.className = 'gantt-cell gantt-timeline';
-                         if (isOddRow) {
-                           timelineCell.style.backgroundColor = '#f8f9fa';
-                        }
-
-                        const bar = document.createElement('div');
-                        bar.className = `gantt-bar ${trackClass}`;
-                        bar.style.left = `${left}%`;
-                        bar.style.width = `${width}%`;
-                        bar.title = barTitle;
-                        
-                        const barSpan = document.createElement('span');
-                        barSpan.textContent = task.name;
-
-                        bar.appendChild(barSpan);
-                        timelineCell.appendChild(bar);
-                        row.appendChild(taskNameCell);
-                        row.appendChild(timelineCell);
-                        ganttGrid.appendChild(row);
-                    });
-                </script>
+        <!-- Revenue Projections -->
+        <div class="section-card mb-6">
+            <h2 class="text-3xl font-bold text-white text-center mb-8">Data-Driven Revenue Projections (Net)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-900 p-6 rounded-xl border-2 border-green-500/30">
+                    <h3 class="text-xl font-bold text-center text-green-300 mb-4">Scenario A: Conservative (2% Conversion)</h3>
+                    <div class="text-center mb-4">
+                        <div class="text-5xl font-extrabold text-white">~$63K</div>
+                        <div class="text-gray-400">Total Monthly Recurring Revenue</div>
+                         <div class="text-lg font-bold text-green-300 mt-1">~$759K Annually</div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex justify-between"><span>Tier 1 (60% of members)</span> <span class="font-mono">$11,898</span></p>
+                        <p class="flex justify-between"><span>Tier 2 (35% of members)</span> <span class="font-mono">$34,821</span></p>
+                        <p class="flex justify-between"><span>Tier 3 (5% of members)</span> <span class="font-mono">$16,564</span></p>
+                    </div>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-xl border-2 border-sky-500/30">
+                    <h3 class="text-xl font-bold text-center text-sky-300 mb-4">Scenario B: Aggressive (3% Conversion)</h3>
+                    <div class="text-center mb-4">
+                        <div class="text-5xl font-extrabold text-white">~$94K</div>
+                        <div class="text-gray-400">Total Monthly Recurring Revenue</div>
+                        <div class="text-lg font-bold text-sky-300 mt-1">~$1.13M Annually</div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex justify-between"><span>Tier 1 (60% of members)</span> <span class="font-mono">$17,847</span></p>
+                        <p class="flex justify-between"><span>Tier 2 (35% of members)</span> <span class="font-mono">$52,232</span></p>
+                        <p class="flex justify-between"><span>Tier 3 (5% of members)</span> <span class="font-mono">$24,846</span></p>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <footer class="mt-8">
-            <h3 class="text-lg font-bold text-gray-800 mb-2">범례 (Legend)</h3>
-            <div class="flex flex-wrap gap-x-6 gap-y-2">
-                <div class="flex items-center">
-                    <span class="w-4 h-4 rounded-md bg-[#5e60ce] mr-2"></span>
-                    <span class="text-gray-600">Track 1: 운영 및 확장</span>
+        <!-- Go-To-Market & Competitive Benchmark -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+             <div class="section-card">
+                 <h2 class="text-2xl font-bold text-white mb-6">Go-To-Market Timeline</h2>
+                 <div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-line"></div>
+                        <p class="text-sm text-gray-400 font-medium">Q4 2025</p>
+                        <h3 class="font-bold text-lg text-indigo-300">Phase 1: Buzz Generation</h3>
+                        <p class="text-gray-300 text-sm mt-1">"Invest In Your Mind" campaign, giveaway, and email list building.</p>
+                    </div>
+                    <div class="timeline-item">
+                         <div class="timeline-marker"></div>
+                         <div class="timeline-line"></div>
+                        <p class="text-sm text-gray-400 font-medium">Jan 2026</p>
+                        <h3 class="font-bold text-lg text-indigo-300">Phase 2: Launch Window</h3>
+                         <p class="text-gray-300 text-sm mt-1">Email-first reveal, public launch video, and community engagement blitz (Live Q&A, Gifting).</p>
+                    </div>
+                    <div class="timeline-item">
+                         <div class="timeline-marker"></div>
+                        <p class="text-sm text-gray-400 font-medium">Feb - Mar 2026</p>
+                         <h3 class="font-bold text-lg text-indigo-300">Phase 3: Onboarding & Retention</h3>
+                         <p class="text-gray-300 text-sm mt-1">Early bird discount, exclusive welcome video, and active feedback loop.</p>
+                    </div>
                 </div>
-                <div class="flex items-center">
-                    <span class="w-4 h-4 rounded-md bg-[#4ea8de] mr-2"></span>
-                    <span class="text-gray-600">Track 2: 콘텐츠 및 팀 빌딩</span>
+             </div>
+             <div class="section-card">
+                 <h2 class="text-2xl font-bold text-white mb-6">Competitive Benchmark</h2>
+                 <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="table-header">
+                            <tr>
+                                <th class="p-3">Channel</th>
+                                <th class="p-3">Tier 1 (Support)</th>
+                                <th class="p-3">Tier 2 (Content)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row-odd">
+                                <td class="p-3 font-semibold">슈카월드</td>
+                                <td class="p-3">~$3.50</td>
+                                <td class="p-3">~$10</td>
+                            </tr>
+                            <tr class="table-row-even">
+                                <td class="p-3 font-semibold">EO</td>
+                                <td class="p-3">~$4.50</td>
+                                <td class="p-3">~$25</td>
+                            </tr>
+                             <tr class="table-row-odd">
+                                <td class="p-3 font-semibold">김미경 MKTV</td>
+                                <td class="p-3">~$4.50</td>
+                                <td class="p-3">~$25</td>
+                            </tr>
+                             <tr class="table-row-even">
+                                <td class="p-3 font-semibold">조승연의 탐구생활</td>
+                                <td class="p-3">~$4.50</td>
+                                <td class="p-3">~$10</td>
+                            </tr>
+                              <tr class="table-row-odd">
+                                <td class="p-3 font-semibold">주언규</td>
+                                <td class="p-3">~$4.50</td>
+                                <td class="p-3">~$25</td>
+                            </tr>
+                             <tr class="table-row-even">
+                                <td class="p-3 font-semibold">14F (MBC)</td>
+                                <td class="p-3">~$2.50</td>
+                                <td class="p-3">~$10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 </div>
+                 <p class="text-xs text-gray-400 mt-4 italic">Insight: Clear value jump from support to content tiers is the market standard.</p>
+             </div>
+        </div>
+        
+        <!-- Risk Mitigation -->
+        <div class="section-card">
+            <h2 class="text-3xl font-bold text-white text-center mb-8">Risk Mitigation Plan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                    <h3 class="font-bold text-lg text-red-300">Challenge</h3>
+                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Preference for free content.</p>
+                    <h3 class="font-bold text-lg text-green-300 mt-4">Mitigation</h3>
+                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Low-cost $2.99 entry tier and a limited-time early bird discount to lower friction.</p>
                 </div>
-                <div class="flex items-center">
-                    <span class="w-4 h-4 rounded-md bg-[#198754] mr-2"></span>
-                    <span class="text-gray-600">Track 3: 수익화 및 시스템</span>
+                 <div>
+                    <h3 class="font-bold text-lg text-red-300">Challenge</h3>
+                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Competition from established learning platforms.</p>
+                     <h3 class="font-bold text-lg text-green-300 mt-4">Mitigation</h3>
+                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Differentiate with unique intellectual content (geopolitics, etymology) that cannot be replicated.</p>
+                </div>
+                 <div>
+                    <h3 class="font-bold text-lg text-red-300">Challenge</h3>
+                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Production capacity constraints.</p>
+                     <h3 class="font-bold text-lg text-green-300 mt-4">Mitigation</h3>
+                    <p class="mt-2 p-3 bg-gray-900/50 rounded-lg h-full">Develop scalable workflows with PNH and define a clear protocol for Emergency Briefings.</p>
                 </div>
             </div>
-        </footer>
+        </div>
+
     </div>
+
 </body>
 </html>
